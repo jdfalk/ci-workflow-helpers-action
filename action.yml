@@ -7,7 +7,7 @@ description: "Comprehensive CI workflow helper commands for multi-language proje
 author: "jdfalk"
 
 branding:
-  icon: "tool"
+  icon: "terminal"
   color: "green"
 
 inputs:
