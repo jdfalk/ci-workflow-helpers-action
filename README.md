@@ -1,10 +1,15 @@
 # file: README.md
+
 # version: 1.0.0
+
 # guid: b2c3d4e5-f6a7-4890-b1c2-d3e4f5a6b7c8
 
 # CI Workflow Helpers Action
 
-Comprehensive CI workflow helper commands for multi-language projects. This composite GitHub Action provides a collection of utility commands for testing, building, coverage checking, and CI orchestration across Go, Python, Rust, Frontend/Node.js, Docker, and documentation projects.
+Comprehensive CI workflow helper commands for multi-language projects. This
+composite GitHub Action provides a collection of utility commands for testing,
+building, coverage checking, and CI orchestration across Go, Python, Rust,
+Frontend/Node.js, Docker, and documentation projects.
 
 ## Features
 
@@ -29,7 +34,7 @@ Comprehensive CI workflow helper commands for multi-language projects. This comp
   uses: jdfalk/ci-workflow-helpers-action@v1
   with:
     command: go-test
-    coverage-threshold: "80"
+    coverage-threshold: '80'
 ```
 
 ### With Repository Configuration
@@ -230,7 +235,7 @@ jobs:
         uses: jdfalk/ci-workflow-helpers-action@v1
         with:
           command: go-test
-          coverage-threshold: "80"
+          coverage-threshold: '80'
 
       - name: Run Benchmarks
         uses: jdfalk/ci-workflow-helpers-action@v1
@@ -292,7 +297,7 @@ jobs:
         uses: jdfalk/ci-workflow-helpers-action@v1
         with:
           command: rust-clippy
-          clippy-extra-args: "-- -D warnings"
+          clippy-extra-args: '-- -D warnings'
 
       - name: Generate Coverage
         uses: jdfalk/ci-workflow-helpers-action@v1
@@ -309,7 +314,7 @@ jobs:
         uses: jdfalk/ci-workflow-helpers-action@v1
         with:
           command: enforce-coverage-threshold
-          coverage-threshold: "80"
+          coverage-threshold: '80'
         env:
           COVERAGE_PERCENT: ${{ steps.coverage.outputs.percent }}
 ```
@@ -331,21 +336,21 @@ jobs:
         uses: jdfalk/ci-workflow-helpers-action@v1
         with:
           command: frontend-install
-          frontend-working-dir: "./client"
+          frontend-working-dir: './client'
 
       - name: Build
         uses: jdfalk/ci-workflow-helpers-action@v1
         with:
           command: frontend-run
-          frontend-script: "build"
-          frontend-working-dir: "./client"
+          frontend-script: 'build'
+          frontend-working-dir: './client'
 
       - name: Test
         uses: jdfalk/ci-workflow-helpers-action@v1
         with:
           command: frontend-run
-          frontend-script: "test"
-          frontend-working-dir: "./client"
+          frontend-script: 'test'
+          frontend-working-dir: './client'
 ```
 
 ### Matrix Generation
@@ -386,9 +391,13 @@ jobs:
 
 ## Design Philosophy
 
-This action consolidates CI workflow helper logic into a reusable, testable, and maintainable composite action. It replaces scattered Python scripts with a centralized tool that can be versioned and referenced across multiple repositories.
+This action consolidates CI workflow helper logic into a reusable, testable, and
+maintainable composite action. It replaces scattered Python scripts with a
+centralized tool that can be versioned and referenced across multiple
+repositories.
 
 **Key Benefits:**
+
 - **Single Source of Truth**: One action replaces multiple script files
 - **Versioned Releases**: Use `@v1`, `@v1.2.3`, or `@main` tags
 - **Consistent Behavior**: Same logic across all repositories
@@ -400,20 +409,22 @@ This action consolidates CI workflow helper logic into a reusable, testable, and
 If you're migrating from the original `ci_workflow.py` script:
 
 **Before:**
+
 ```yaml
 - name: Run Tests
   run: python .github/workflows/scripts/ci_workflow.py go-test
   env:
-    COVERAGE_THRESHOLD: "80"
+    COVERAGE_THRESHOLD: '80'
 ```
 
 **After:**
+
 ```yaml
 - name: Run Tests
   uses: jdfalk/ci-workflow-helpers-action@v1
   with:
     command: go-test
-    coverage-threshold: "80"
+    coverage-threshold: '80'
 ```
 
 ## License
@@ -426,4 +437,5 @@ Contributions welcome! Please open issues or pull requests on GitHub.
 
 ## Author
 
-Created by [jdfalk](https://github.com/jdfalk) as part of the ghcommon CI infrastructure suite.
+Created by [jdfalk](https://github.com/jdfalk) as part of the ghcommon CI
+infrastructure suite.

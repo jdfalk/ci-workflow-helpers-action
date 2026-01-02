@@ -1,5 +1,7 @@
 # file: COMMANDS.md
+
 # version: 1.0.0
+
 # guid: b8c9d0e1-f2a3-4456-b7c8-d9e0f1a2b3c4
 
 # Command Quick Reference
@@ -35,7 +37,7 @@ Quick reference for all available CI Workflow Helper commands.
   with:
     command: wait-for-pr-automation
     target-sha: ${{ github.event.pull_request.head.sha }}
-    workflow-name: "PR Automation"
+    workflow-name: 'PR Automation'
 
 # Generate CI pipeline summary
 - uses: jdfalk/ci-workflow-helpers-action@v1
@@ -82,14 +84,14 @@ Quick reference for all available CI Workflow Helper commands.
 - uses: jdfalk/ci-workflow-helpers-action@v1
   with:
     command: go-test
-    coverage-threshold: "80"
+    coverage-threshold: '80'
 
 # Check existing coverage
 - uses: jdfalk/ci-workflow-helpers-action@v1
   with:
     command: check-go-coverage
     coverage-file: coverage.out
-    coverage-threshold: "80"
+    coverage-threshold: '80'
 
 # Run benchmarks
 - uses: jdfalk/ci-workflow-helpers-action@v1
@@ -133,8 +135,8 @@ Quick reference for all available CI Workflow Helper commands.
 - uses: jdfalk/ci-workflow-helpers-action@v1
   with:
     command: rust-clippy
-    clippy-all-features: "true"
-    clippy-extra-args: "-- -D warnings"
+    clippy-all-features: 'true'
+    clippy-extra-args: '-- -D warnings'
 
 # Generate lcov coverage
 - uses: jdfalk/ci-workflow-helpers-action@v1
@@ -158,7 +160,7 @@ Quick reference for all available CI Workflow Helper commands.
 - uses: jdfalk/ci-workflow-helpers-action@v1
   with:
     command: enforce-coverage-threshold
-    coverage-threshold: "80"
+    coverage-threshold: '80'
   env:
     COVERAGE_PERCENT: ${{ steps.coverage.outputs.percent }}
 ```
@@ -170,16 +172,16 @@ Quick reference for all available CI Workflow Helper commands.
 - uses: jdfalk/ci-workflow-helpers-action@v1
   with:
     command: frontend-install
-    frontend-working-dir: "./client"
+    frontend-working-dir: './client'
 
 # Run npm script
 - uses: jdfalk/ci-workflow-helpers-action@v1
   with:
     command: frontend-run
-    frontend-script: "build"
-    frontend-working-dir: "./client"
-    frontend-success-message: "Build succeeded!"
-    frontend-failure-message: "Build failed"
+    frontend-script: 'build'
+    frontend-working-dir: './client'
+    frontend-success-message: 'Build succeeded!'
+    frontend-failure-message: 'Build failed'
 ```
 
 ### 🐳 Docker Commands
@@ -224,7 +226,7 @@ Quick reference for all available CI Workflow Helper commands.
 - uses: jdfalk/ci-workflow-helpers-action@v1
   with:
     command: go-test
-    coverage-threshold: "80"
+    coverage-threshold: '80'
 
 - uses: jdfalk/ci-workflow-helpers-action@v1
   with:
@@ -274,7 +276,7 @@ Quick reference for all available CI Workflow Helper commands.
 - uses: jdfalk/ci-workflow-helpers-action@v1
   with:
     command: enforce-coverage-threshold
-    coverage-threshold: "80"
+    coverage-threshold: '80'
   env:
     COVERAGE_PERCENT: ${{ steps.coverage.outputs.percent }}
 ```
@@ -323,4 +325,5 @@ Most commands respect these environment variables when set:
 
 - `0` - Success
 - `1` - General failure
-- Command-specific exit codes for coverage threshold violations, test failures, etc.
+- Command-specific exit codes for coverage threshold violations, test failures,
+  etc.

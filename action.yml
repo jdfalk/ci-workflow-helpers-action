@@ -2,220 +2,220 @@
 # version: 1.0.0
 # guid: a1b2c3d4-e5f6-4789-a0b1-c2d3e4f5a6b7
 
-name: "CI Workflow Helpers"
-description: "Comprehensive CI workflow helper commands for multi-language projects"
-author: "jdfalk"
+name: 'CI Workflow Helpers'
+description: 'Comprehensive CI workflow helper commands for multi-language projects'
+author: 'jdfalk'
 
 branding:
-  icon: "terminal"
-  color: "green"
+  icon: 'terminal'
+  color: 'green'
 
 inputs:
   command:
-    description: "Command to execute (e.g., go-setup, python-install, rust-clippy, generate-matrices)"
+    description: 'Command to execute (e.g., go-setup, python-install, rust-clippy, generate-matrices)'
     required: true
 
   repository-config:
-    description: "Repository configuration JSON (from load-config-action)"
+    description: 'Repository configuration JSON (from load-config-action)'
     required: false
-    default: "{}"
+    default: '{}'
 
   # Coverage-related inputs
   coverage-file:
-    description: "Path to coverage output file"
+    description: 'Path to coverage output file'
     required: false
-    default: "coverage.out"
+    default: 'coverage.out'
 
   coverage-html:
-    description: "Path to HTML coverage report"
+    description: 'Path to HTML coverage report'
     required: false
-    default: "coverage.html"
+    default: 'coverage.html'
 
   coverage-threshold:
-    description: "Coverage threshold percentage"
+    description: 'Coverage threshold percentage'
     required: false
-    default: "0"
+    default: '0'
 
   # Frontend-related inputs
   frontend-working-dir:
-    description: "Working directory for frontend commands"
+    description: 'Working directory for frontend commands'
     required: false
-    default: "."
+    default: '.'
 
   frontend-script:
-    description: "NPM script name to run (for frontend-run command)"
+    description: 'NPM script name to run (for frontend-run command)'
     required: false
-    default: ""
+    default: ''
 
   frontend-success-message:
-    description: "Success message for frontend-run"
+    description: 'Success message for frontend-run'
     required: false
-    default: "Command succeeded"
+    default: 'Command succeeded'
 
   frontend-failure-message:
-    description: "Failure message for frontend-run"
+    description: 'Failure message for frontend-run'
     required: false
-    default: "Command failed"
+    default: 'Command failed'
 
   # Rust-related inputs
   lcov-output:
-    description: "Path for Rust lcov output"
+    description: 'Path for Rust lcov output'
     required: false
-    default: "lcov.info"
+    default: 'lcov.info'
 
   html-output-dir:
-    description: "Path for Rust HTML coverage output"
+    description: 'Path for Rust HTML coverage output'
     required: false
-    default: "htmlcov"
+    default: 'htmlcov'
 
   clippy-all-features:
-    description: "Enable all features for clippy"
+    description: 'Enable all features for clippy'
     required: false
-    default: "false"
+    default: 'false'
 
   clippy-features:
-    description: "Comma-separated features for clippy"
+    description: 'Comma-separated features for clippy'
     required: false
-    default: ""
+    default: ''
 
   clippy-no-default-features:
-    description: "Disable default features for clippy"
+    description: 'Disable default features for clippy'
     required: false
-    default: "false"
+    default: 'false'
 
   clippy-extra-args:
-    description: "Extra arguments for clippy"
+    description: 'Extra arguments for clippy'
     required: false
-    default: ""
+    default: ''
 
   # Docker-related inputs
   dockerfile-path:
-    description: "Path to Dockerfile"
+    description: 'Path to Dockerfile'
     required: false
-    default: "Dockerfile"
+    default: 'Dockerfile'
 
   docker-image:
-    description: "Docker image name for build"
+    description: 'Docker image name for build'
     required: false
-    default: "test-image"
+    default: 'test-image'
 
   # Super Linter configuration
   pr-env-file:
-    description: "PR mode Super Linter env file"
+    description: 'PR mode Super Linter env file'
     required: false
-    default: "super-linter-pr.env"
+    default: 'super-linter-pr.env'
 
   ci-env-file:
-    description: "CI mode Super Linter env file"
+    description: 'CI mode Super Linter env file'
     required: false
-    default: "super-linter-ci.env"
+    default: 'super-linter-ci.env'
 
   # Wait for PR automation
   target-sha:
-    description: "Target SHA for PR automation wait"
+    description: 'Target SHA for PR automation wait'
     required: false
-    default: ""
+    default: ''
 
   workflow-name:
-    description: "Workflow name to wait for"
+    description: 'Workflow name to wait for'
     required: false
-    default: "PR Automation"
+    default: 'PR Automation'
 
   max-attempts:
-    description: "Max attempts for PR automation wait"
+    description: 'Max attempts for PR automation wait'
     required: false
-    default: "60"
+    default: '60'
 
   sleep-seconds:
-    description: "Sleep seconds between PR automation checks"
+    description: 'Sleep seconds between PR automation checks'
     required: false
-    default: "10"
+    default: '10'
 
   # Fallback version inputs for matrix generation
   fallback-go-version:
-    description: "Fallback Go version"
+    description: 'Fallback Go version'
     required: false
-    default: "1.24"
+    default: '1.24'
 
   fallback-python-version:
-    description: "Fallback Python version"
+    description: 'Fallback Python version'
     required: false
-    default: "3.13"
+    default: '3.13'
 
   fallback-rust-version:
-    description: "Fallback Rust version"
+    description: 'Fallback Rust version'
     required: false
-    default: "stable"
+    default: 'stable'
 
   fallback-node-version:
-    description: "Fallback Node version"
+    description: 'Fallback Node version'
     required: false
-    default: "22"
+    default: '22'
 
   fallback-coverage-threshold:
-    description: "Fallback coverage threshold"
+    description: 'Fallback coverage threshold'
     required: false
-    default: "80"
+    default: '80'
 
 outputs:
   skip_ci:
-    description: "Whether CI should be skipped (determine-execution)"
+    description: 'Whether CI should be skipped (determine-execution)'
     value: ${{ steps.run.outputs.skip_ci }}
 
   should_lint:
-    description: "Whether linting should run"
+    description: 'Whether linting should run'
     value: ${{ steps.run.outputs.should_lint }}
 
   should_test_go:
-    description: "Whether Go tests should run"
+    description: 'Whether Go tests should run'
     value: ${{ steps.run.outputs.should_test_go }}
 
   should_test_frontend:
-    description: "Whether Frontend tests should run"
+    description: 'Whether Frontend tests should run'
     value: ${{ steps.run.outputs.should_test_frontend }}
 
   should_test_python:
-    description: "Whether Python tests should run"
+    description: 'Whether Python tests should run'
     value: ${{ steps.run.outputs.should_test_python }}
 
   should_test_rust:
-    description: "Whether Rust tests should run"
+    description: 'Whether Rust tests should run'
     value: ${{ steps.run.outputs.should_test_rust }}
 
   should_test_docker:
-    description: "Whether Docker tests should run"
+    description: 'Whether Docker tests should run'
     value: ${{ steps.run.outputs.should_test_docker }}
 
   config-file:
-    description: "Super Linter config file loaded"
+    description: 'Super Linter config file loaded'
     value: ${{ steps.run.outputs.config-file }}
 
   go-matrix:
-    description: "Generated Go CI matrix"
+    description: 'Generated Go CI matrix'
     value: ${{ steps.run.outputs.go-matrix }}
 
   python-matrix:
-    description: "Generated Python CI matrix"
+    description: 'Generated Python CI matrix'
     value: ${{ steps.run.outputs.python-matrix }}
 
   rust-matrix:
-    description: "Generated Rust CI matrix"
+    description: 'Generated Rust CI matrix'
     value: ${{ steps.run.outputs.rust-matrix }}
 
   frontend-matrix:
-    description: "Generated Frontend CI matrix"
+    description: 'Generated Frontend CI matrix'
     value: ${{ steps.run.outputs.frontend-matrix }}
 
   coverage-threshold:
-    description: "Coverage threshold from config"
+    description: 'Coverage threshold from config'
     value: ${{ steps.run.outputs.coverage-threshold }}
 
   percent:
-    description: "Computed coverage percentage (Rust)"
+    description: 'Computed coverage percentage (Rust)'
     value: ${{ steps.run.outputs.percent }}
 
 runs:
-  using: "composite"
+  using: 'composite'
   steps:
     - name: Execute CI Helper Command
       id: run
